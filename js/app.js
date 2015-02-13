@@ -9,7 +9,7 @@ function main() {
     loaderControl: false //dont show tiles loader
   };
 
-  cartodb.createVis('map', 'http://cityresearch.cartodb.com/api/v2/viz/5c39067a-b3aa-11e4-a01f-0e9d821ea90d/viz.json', options)
+  cartodb.createVis('map', 'http://sarahkehresman.cartodb.com/api/v2/viz/af372514-b3d7-11e4-81ba-0e0c41326911/viz.json', options)
     .done(function(vis, layers) {
       // there are two layers, base layer and points layer
       var sublayer = layers[1].getSubLayer(0);
