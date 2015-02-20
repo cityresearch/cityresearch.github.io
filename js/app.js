@@ -22,12 +22,7 @@ function main() {
         template: '<p>{{name_to_display}}</p>'
       });
 
-      vis.addOverlay({
-        type: 'infobox',
-        template: '<h3>{{name_to_display}}</h3><p>{{description}}</p>',
-        width: 200,
-        position: 'bottom|right'
-      });
+     
 
     });
 
