@@ -12,9 +12,7 @@ function main() {
   cartodb.createVis('map', 'http://cityresearch.cartodb.com/api/v2/viz/5c39067a-b3aa-11e4-a01f-0e9d821ea90d/viz.json', options)
         .done(function(vis, layers) {
       // there are two layers, base layer and points layer
-      var sublayer = layers[1].getSubLayer(0);
-      sublayer.set({ 'interactivity': ['cartodb_id', 'name_to_display', 'description'] });
-
+     
  
 
       // add the tooltip show when hover on the point
