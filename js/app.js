@@ -3,7 +3,7 @@ var map;
 function main() {
 
   var options = {
-    center: [38.355, -85.771],
+    center: [38.1, -85.771],
     zoom: 11, 
     zoomControl: false,  // dont add the zoom overlay (it is added by default)
     loaderControl: false //dont show tiles loader
