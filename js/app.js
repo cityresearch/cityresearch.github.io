@@ -10,5 +10,6 @@ function main() {
   };
 
   cartodb.createVis('map', 'http://cityresearch.cartodb.com/api/v2/viz/5c39067a-b3aa-11e4-a01f-0e9d821ea90d/viz.json')
+  {}
 
 
