@@ -144,7 +144,9 @@
         .error(function(err) {
           console.log(err);
         });
-
+L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
+        attribution: 'Stamen'
+        }).addTo(map);
       }
  
       window.onload = main;
