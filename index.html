@@ -4,7 +4,8 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
-  
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.11/themes/css/cartodb.css" /> 
    
     <style>
@@ -44,8 +45,12 @@
       #layer_selector li.selected {
         background-color: #EEE;
       }
+         body {margin:0; padding:0; }
+  #map {position:absolute; top:0; bottom:0; left:25%; width:75%;}
+
+  .leftpane { width:25%; }
     </style>
- 
+
     <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.ie.css" />
@@ -58,25 +63,6 @@
     <div id="leftBkg"></div>
     <div id="overlay"></div>
 
-<div class="left">
-      <div id="title"></div>
-      <p>Click on each location to discover pics of the places and comments from the production videos.</p>
-      <p>The data is hosted on <a href="http://cartodb.com">CartoDB</a> and was assembled from various data sources. </p>
-      <p>This map was developed using the CartoDB JavaScript library, <a href="https://github.com/CartoDB/cartodb.js">Cartodb.js</a> Fork it and create your own.</p>
-      <div id="legendBox">
-        <ul>
-          <li>Natural Parks</li>
-          <li>Villages</li>
-          <li>Rivers</li>
-          <li>Fields</li>
-          <li>Caves</li>
-        </ul>
-      </div>
-    </div>
-
-    <div id="pointTT">
-      <p></p>
-    </div>
 
 
     <div id="layer_selector" class="cartodb-infobox">
