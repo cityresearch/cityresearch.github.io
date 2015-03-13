@@ -1,0 +1,151 @@
+ <html>
+  <head>
+    <title>TEST LAYERS</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    
+    <link rel="shortcut icon" href="http://cartodb.com/assets/favicon.ico" />
+
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.11/themes/css/cartodb.css" /> 
+   
+    <style>
+      html, body, #map {
+           height: 100%;
+           padding: 0;
+           margin: 0;
+           background: none;
+      }
+      
+      .mapstyle {
+       padding: 25;
+       
+      }
+    
+      #layer_selector {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 0;
+      }
+ 
+      #layer_selector ul {
+        padding: 0; margin: 0;
+        list-style-type: none;
+      }
+ 
+      #layer_selector li {
+        border-bottom: 1px solid #999;
+        padding: 15px 30px;
+        font-family: "Helvetica", Arial;
+        font-size: 13px;
+        color: #444;
+        cursor: auto;
+      }
+ 
+      #layer_selector li:hover {
+        background-color: #F0F0F0;
+        cursor: pointer;
+      }
+ 
+      #layer_selector li.selected {
+        background-color: #EEE;
+      }
+         body {margin:0; padding:0; }
+  #map {position:absolute; top:0; bottom:0; left:25%; width:75%;}
+  .leftpane { width:25%; }
+    </style>
+
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.ie.css" />
+    <![endif]-->
+  </head>
+
+  <body>
+  <div class='pin-left pad2 fill-white leftpane'>
+    <div class = "mapstyle">
+     <img src="http://i.imgur.com/t5rMGN3.png?1" alt="some_text"><p> </p> 
+     <p> <br>The Greater Louisville Project is an independent, non-partisan civic initiative supported by a consortium of foundations. Launched in 2003, the Greater Louisville Project was created to support the merged government Louisville Metro. At that time, the Project commissioned the Brookings Institution report entitled, Beyond Merger:  A Competitive Vision for the Regional City of Louisville, which identified our strengths and weaknesses compared to other cities and charted a course for long-term progress. In support of this civic agenda, GLP puts forward data, research and information related to a Competitive City Agenda and Deep Drivers of Change that connect the dots between education, jobs and quality of place. Since its launch, GLP has released numerous annual and special reports, hosted events for hundreds of attendees, and continues to serve as the credible source of data that brings focus and understanding to advancing a competitive city. </p>
+     
+    </div>
+    
+    <div id="map"></div>
+    <div id="leftBkg"></div>
+    <div id="overlay"></div>
+
+
+
+    <div id="layer_selector" class="cartodb-infobox">
+      <ul>
+        <li id="abc" class="selected">All</li>
+        <li id="efg">Places</li>
+        <li id="hij">Cables</li>
+      </ul>
+    </div>
+ 
+    <!-- include cartodb.js library -->
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+ 
+    <script>
+      var selectedLayer;
+      // create layer selector
+      function createSelector(layers) {
+        var sql = new cartodb.SQL({ user: 'documentation' });
+ 
+        var $options = $('#layer_selector li');
+        $options.click(function(e) {
+          // get the area of the selected layer
+          var $li = $(e.target);
+          var layer = $li.attr('id');
+          if(selectedLayer != layer ){
+            // definitely more elegant ways to do this, but went for
+            // ease of understanding
+            if (layer == 'abc'){
+              layers.getSubLayer(0).show(); // countries
+              layers.getSubLayer(1).show(); // cables
+              layers.getSubLayer(2).show(); // populated places
+            }
+            else if (layer == 'efg') {
+              layers.getSubLayer(0).show();
+              layers.getSubLayer(1).hide();
+              layers.getSubLayer(2).show();
+            }
+            else {
+              layers.getSubLayer(0).show();
+              layers.getSubLayer(1).show();
+              layers.getSubLayer(2).hide();
+            }
+          }
+        });
+      }
+ 
+      var layerN = {};
+      function main() {
+        var map = L.map('map', { 
+          zoomControl: true,
+          center: [38.200, -85.671],
+          zoom: 11
+        });
+        // get the currently selected style
+        selectedStyle = $('li.selected').attr('id');
+         
+ 
+        cartodb.createLayer(map, 'http://cityresearch.cartodb.com/api/v2/viz/5c39067a-b3aa-11e4-a01f-0e9d821ea90d/viz.json')
+        .addTo(map)
+        .done(function(layers) {
+          createSelector(layers);
+        })
+        .error(function(err) {
+          console.log(err);
+        });
+L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
+        attribution: 'Stamen'
+        }).addTo(map);
+      }
+ 
+      window.onload = main;
+    </script>
+    
+    
+  </body>
+</html>
